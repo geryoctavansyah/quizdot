@@ -1,0 +1,22 @@
+Diasumsikan bahwa sudah git clone. Maka, langkah-langkahnya adalah sebagai berikut
+
+1. cd ke folder yang ingin dicompose
+2. cd src
+3. mv .env.example .env
+4. ifconfig, copy IP WSL yang berada di line ke-2
+5. Masukkan DB_PORT, DB_DATABASE, DB_USERNAME, dan DB_PASSWORD
+6. Ganti DB_HOST menjadi IP WSL yang tadi sudah dicopy
+8. docker-compose up -d --build
+9. docker exec -it lumen_php bash
+10. composer create-project --prefer-dist laravel/lumen .
+11. composer require flipbox/lumen-generator
+12. nano bootstrap app.php 
+13. Ubah nano bootstrap app.php
+14. php artisan makemodel Market -mcfs --resource
+15. Ubah MarketSeeder dengan memasukkan id, title, dan harga pada public function run()
+16. Ubah migrations dengan memasukkan create schema market dengan isi id, title, dan harga pada public function up()
+17. Masukkan id, title, dan harga pada protected = $fillable [] dalam file src/app/Models/Market.php 
+18. php artisan migrate:fresh --seed --seeder=MarketSeeder 
+
+
+Untuk mengisi tabel, dapat digunakan postman dengan url https://localhost/api/v1/testing

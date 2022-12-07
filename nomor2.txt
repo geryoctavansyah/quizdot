@@ -1,0 +1,11 @@
+Diasumsikan bahwa sudah git clone. Maka, langkah-langkahnya adalah sebagai berikut
+
+1. cd ke folder yang ingin dicompose
+2. ifconfig, lalu copy IP WSL pada line ke-2
+3. Masukkan IP WSL dalam file user_service/app/api/db.py
+4. docker-compose up -d --build
+5. docker exec -it mongo mongosh --username root --password p455w0rd
+6. use market //membuat database baru
+7. db.createCollection("items") //Membuat collection baru
+8. db.items.insert([{"id":"1", "title":"Pulpen", "harga":"5000"}, {"id":"2", "title":"Buku", "harga":"10000"}, 
+{"id":"3", "title":"Penghapus", "harga":"3000"}, {"id":"4", "title":"Rautan", "harga":"3000"}])

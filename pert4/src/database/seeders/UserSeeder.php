@@ -21,9 +21,9 @@ class UserSeeder extends Seeder
     {
         //
         $timestamp = \Carbon\Carbon::now()->toDateTimeString();
-        DB::table('users')->insert([
-            'username'  => 'client',
-            'password'  => Str::random(40),
+        DB::table('market')->insert([
+            'title'  => 'client',
+            'harga'  => Str::random(40),
             'created_at' => $timestamp,
             'updated_at' => $timestamp
         ]);

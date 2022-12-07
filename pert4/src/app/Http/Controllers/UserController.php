@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$trans= DB::connection('mysql')->table('users')->get(); //cara laravel
+        //$trans= DB::connection('mysql')->table('market')->get(); //cara laravel
         $trans = DB::select('call sp_office_getbycountry("USA")');
         return response()->json($trans);
     }
@@ -31,14 +31,14 @@ class UserController extends Controller
         //
         $timestamp = \Carbon\Carbon::now()->toDateTimeString();
         $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required',
+            'title' => 'required',
+            'harga' => 'required',
         ]);
 
         $request['created_at'] = $timestamp;
         $request['updated_at'] = $timestamp;
 
-        $trans = DB::connection('mysql')->table('users')->insert($request->all());
+        $trans = DB::connection('mysql')->table('market')->insert($request->all());
         return response()->json(response("Berhasil ditambahkan"));
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $trans = DB::connection('mysql')->table('users')->where('id', $id)->first();
+        $trans = DB::connection('mysql')->table('market')->where('id', $id)->first();
         return response()->json($trans);
     }
 
@@ -75,7 +75,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        $trans = DB::connection('mysql')->table('users')->where('id', $id)->get();
+        $trans = DB::connection('mysql')->table('market')->where('id', $id)->get();
         return response()->json(" EDIT $trans");
     }
 
@@ -91,7 +91,7 @@ class UserController extends Controller
         //
         $timestamp = \Carbon\Carbon::now()->toDateTimeString();
         $request['updated_at'] = $timestamp;
-        $trans = DB::connection('mysql')->table('users')->where('id', $id)->update($request->all());
+        $trans = DB::connection('mysql')->table('market')->where('id', $id)->update($request->all());
         return response()->json("Berhasil Update Data");
     }
 
@@ -104,7 +104,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        $trans = DB::connection('mysql')->table('users')->where('id', $id)->delete();
+        $trans = DB::connection('mysql')->table('market')->where('id', $id)->delete();
         return response()->json("Berhasil Hapus");
     }
 
